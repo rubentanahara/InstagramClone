@@ -1,19 +1,30 @@
 module.exports = {
   root: true,
-
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-native/all',
+    'prettier',
+  ],
+  plugins: ['@typescript-eslint', 'react', 'react-native'],
   rules: {
-    // suppress errors for missing 'import React' in files
-
-    'react/react-in-jsx-scope': 'off',
-
-    // allow jsx syntax in js files (for next.js project)
-
+    // Add any project-specific rules or overrides here
     'react/jsx-filename-extension': [
       1,
-
       {extensions: ['.js', '.jsx', '.ts', '.tsx']},
     ],
+    'react-native/no-inline-styles': `off`,
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
-
-  extends: '@react-native-community',
+  settings: {
+    'import/resolver': {
+      'babel-plugin-root-import': {
+        rootPathSuffix: 'src',
+        rootPathPrefix: '~',
+      },
+    },
+  },
 };
