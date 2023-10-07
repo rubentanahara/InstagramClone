@@ -1,11 +1,11 @@
-import {View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import Post from './src/components/Post/Post';
 
 const App = () => {
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <Post />
-    </View>
+    </SafeAreaView>
   );
 };
 export default App;
