@@ -1,9 +1,12 @@
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import Post from './src/components/Post/Post';
 import post from './src/assets/data/post';
+import {IPost} from './src/types/interfaces';
+interface IAppProps {
+  post: IPost;
+}
 
 const App = () => {
-  console.dir(post);
   return (
     <SafeAreaView style={styles.app}>
       <ScrollView>

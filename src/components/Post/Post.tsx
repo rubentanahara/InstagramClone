@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React from 'react';
+import {View, Text, Image} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -25,7 +25,7 @@ const Post = ({post}: IPostProps) => {
         />
         <View style={{flex: 1}}>
           <Text style={styles.userName}>{post.user.username}</Text>
-          <Text style={styles.location}>{post.location}</Text>
+          <Text style={styles.location}>{post?.location}</Text>
         </View>
         <Entypo
           name="dots-three-horizontal"
@@ -68,22 +68,12 @@ const Post = ({post}: IPostProps) => {
         </View>
         <Text>
           Liked by <Text style={styles.bold}> someone </Text> and{' '}
-          <Text style={styles.bold}> {post.nofLikes} others</Text>
+          <Text style={styles.bold}> {post?.nofLikes} others</Text>
         </Text>
         {/** Caption */}
         <Text numberOfLines={2} ellipsizeMode={'tail'} style={styles.caption}>
-          <Text style={styles.bold}>{post.user.username}</Text> Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Asperiores reprehenderit
-          dolorum nisi magnam facere eaque, dicta laudantium neque earum ad,
-          facilis qui possimus inventore temporibus a itaque iste. Accusantium,
-          quaerat.
-        </Text>
-        <Text
-          style={{
-            color: colors.grey,
-            fontWeight: 'bold',
-          }}>
-          more
+          <Text style={styles.bold}>{post.user.username}</Text>
+          {post?.description}{' '}
         </Text>
         {/** Comments */}
         <Text style={styles.viewComments}>
