@@ -1,13 +1,9 @@
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import Post from './src/components/Post/Post';
-import post from './src/assets/data/post';
-
+import { SafeAreaView, ScrollView, StyleSheet, FlatList } from 'react-native';
+import HomeScreen from './src/screens/HomeScreen/HomeScreen';
 const App = () => {
     return (
         <SafeAreaView style={styles.app}>
-            <ScrollView>
-                <Post post={post} />
-            </ScrollView>
+            <HomeScreen />
         </SafeAreaView>
     );
 };
