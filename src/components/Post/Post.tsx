@@ -9,12 +9,15 @@ import colors from '../../assets/theme/colors';
 import Comment from '../Comment';
 import { IPost } from '../../types/interfaces';
 import DoublePressable from '../DoublePressable';
+import Carousel from '../Carousel';
+import VideoPlayer from '../VideoPlayer';
 
 interface IPostProps {
     post: IPost;
+    isVisible: boolean;
 }
 
-const Post = ({ post }: IPostProps) => {
+const Post = ({ post, isVisible }: IPostProps) => {
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
     const [likes, setLikes] = useState(post.nofLikes);
@@ -30,6 +33,24 @@ const Post = ({ post }: IPostProps) => {
         setLiked(prev => !prev);
         setLikes(prev => prev + (liked ? -1 : 1));
     }
+    let content;
+    if (post.image) {
+        content = (
+            <DoublePressable onDoublePress={handleDoubleLike}>
+                <Image
+                    source={{
+                        uri: post.image,
+                    }}
+                    style={styles.image}
+                />
+            </DoublePressable>
+        );
+    } else if (post.images) {
+        content = <Carousel images={post.images} onDoublePress={handleDoubleLike} />;
+    } else if (post.video) {
+        content = <VideoPlayer uri={post.video} paused={!isVisible} />
+    }
+
 
     return (
         <View style={styles.container}>
@@ -50,15 +71,7 @@ const Post = ({ post }: IPostProps) => {
                     style={styles.threeDots}
                 />
             </View>
-            <DoublePressable onDoublePress={handleDoubleLike}>
-                <Image
-                    style={styles.image}
-                    source={{
-                        uri: post.image,
-                    }}
-                />
-
-            </DoublePressable>
+            {content}
             <View style={styles.footer}>
                 <View style={styles.iconContainer}>
                     <AntDesign
