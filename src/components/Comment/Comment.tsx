@@ -9,7 +9,6 @@ interface ICommentProps {
 }
 
 const Comment = ({ comment }: ICommentProps) => {
-    const hey = '';
     return (
         <>
             <View style={styles.comment}>
