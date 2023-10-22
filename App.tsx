@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, StyleSheet, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen/HomeScreen';
 const App = () => {
     return (

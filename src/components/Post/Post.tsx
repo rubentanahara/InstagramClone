@@ -21,8 +21,9 @@ const Post = ({ post, isVisible }: IPostProps) => {
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
     const [likes, setLikes] = useState(post.nofLikes);
-    const [comments, setComments] = useState(post.nofComments);
+    const [comments] = useState(post.nofComments);
     const [isLargeDescription, setIsLargeDescription] = useState(false);
+    console.warn('is visible ', isVisible);
 
     const handleDoubleLike = () => {
         if (liked) return;
@@ -33,6 +34,7 @@ const Post = ({ post, isVisible }: IPostProps) => {
         setLiked(prev => !prev);
         setLikes(prev => prev + (liked ? -1 : 1));
     }
+
     let content;
     if (post.image) {
         content = (
@@ -50,7 +52,6 @@ const Post = ({ post, isVisible }: IPostProps) => {
     } else if (post.video) {
         content = <VideoPlayer uri={post.video} paused={!isVisible} />
     }
-
 
     return (
         <View style={styles.container}>

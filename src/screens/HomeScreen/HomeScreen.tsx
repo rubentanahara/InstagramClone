@@ -1,26 +1,30 @@
-import { FlatList, ViewabilityConfig, ViewToken } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { ViewabilityConfig, ViewToken } from 'react-native';
 import Post from '../../components/Post/Post';
 import posts from '../../assets/data/post.json';
 import { FlashList } from "@shopify/flash-list";
-import React from 'react';
 
 const HomeScreen = () => {
-    const [activePostId, setActivePostId] = React.useState<null | string>(null);
+    const [activePostId, setActivePostId] = useState<string | null>(null);
+
     const viewabilityConfig: ViewabilityConfig = {
         itemVisiblePercentThreshold: 51,
     };
 
-    const onViewableItemsChanged = React.useRef(
+    const onViewableItemsChanged = useRef(
         ({ viewableItems }: { viewableItems: Array<ViewToken> }) => {
             if (viewableItems.length > 0) {
                 setActivePostId(viewableItems[0].item.id);
             }
         },
     );
+
     return (
         <FlashList
             data={posts}
-            renderItem={({ item }) => <Post post={item} isVisible={item.id === activePostId} />}
+            renderItem={({ item }) =>
+                <Post post={item} isVisible={activePostId === item.id} />
+            }
             keyExtractor={(item) => item.id.toString()}
             estimatedItemSize={500}
             showsVerticalScrollIndicator={false}

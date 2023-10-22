@@ -1,21 +1,19 @@
-import React from "react";
-import { View, Pressable, ViewToken, ViewabilityConfig } from "react-native";
+import React, { useState } from "react";
+import { View, Pressable, StyleSheet } from "react-native";
 import Video from "react-native-video";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
 interface IVideoPlayer {
     uri: string;
     paused: boolean;
 }
 
 const VideoPlayer = ({ uri, paused }: IVideoPlayer) => {
-    const [muted, setMuted] = React.useState(true);
-
+    const [muted, setMuted] = useState(true);
     return (
         <View>
             <Video
                 source={{ uri }}
-                style={{ width: "100%", aspectRatio: 1 }}
+                style={styles.video}
                 resizeMode="cover"
                 repeat
                 muted={muted}
@@ -26,14 +24,19 @@ const VideoPlayer = ({ uri, paused }: IVideoPlayer) => {
                 style={styles.muteButton}
             >
                 <Ionicons name={muted ? "volume-mute" : "volume-high"}
-                    size={12}
+                    size={14}
                     color="white" />
             </Pressable>
         </View>
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
+
+    video: {
+        width: "100%",
+        aspectRatio: 1,
+    },
     muteButton: {
         position: "absolute",
         padding: 10,
@@ -42,6 +45,6 @@ const styles = {
         bottom: 10,
         right: 10,
     },
-};
+});
 
 export default VideoPlayer;
