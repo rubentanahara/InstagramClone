@@ -24,7 +24,6 @@ const Post = ({ post, isVisible }: IPostProps) => {
     const [likes, setLikes] = useState(post.nofLikes);
     const [comments] = useState(post.nofComments);
     const [isLargeDescription, setIsLargeDescription] = useState(false);
-    console.warn('is visible ', isVisible);
     // this is the handler for the double press
     const handleDoubleLike = () => {
         if (liked) return;
@@ -41,6 +40,7 @@ const Post = ({ post, isVisible }: IPostProps) => {
     // if the post has an image we are rendering a single image
     // if the post has images we are rendering a carousel
     // if the post has a video we are rendering a video player
+    //
     let content;
     if (post.image) {
         content = (
@@ -56,7 +56,10 @@ const Post = ({ post, isVisible }: IPostProps) => {
     } else if (post.images) {
         content = <Carousel images={post.images} onDoublePress={handleDoubleLike} />;
     } else if (post.video) {
-        content = <VideoPlayer uri={post.video} paused={!isVisible} />
+        content =
+            (<DoublePressable onDoublePress={handleDoubleLike}>
+                <VideoPlayer uri={post.video} paused={!isVisible} />
+            </DoublePressable>);
     }
     // Here we are rendering the post
     // we are using the same styles for the post

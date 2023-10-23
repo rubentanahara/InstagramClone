@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Video from "react-native-video";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
 interface IVideoPlayer {
     uri: string;
     paused: boolean;
@@ -32,7 +33,6 @@ const VideoPlayer = ({ uri, paused }: IVideoPlayer) => {
 };
 
 const styles = StyleSheet.create({
-
     video: {
         width: "100%",
         aspectRatio: 1,
