@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { ViewabilityConfig, ViewToken } from 'react-native';
 import Post from '../../components/Post/Post';
 import posts from '../../assets/data/post.json';
-import { FlashList } from "@shopify/flash-list";
+import { FlashList } from "@shopify/flash-list"; // this is better flatlist
 
 const HomeScreen = () => {
     const [activePostId, setActivePostId] = useState<string | null>(null);

@@ -18,23 +18,29 @@ interface IPostProps {
 }
 
 const Post = ({ post, isVisible }: IPostProps) => {
+    // this is are the states for the post
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
     const [likes, setLikes] = useState(post.nofLikes);
     const [comments] = useState(post.nofComments);
     const [isLargeDescription, setIsLargeDescription] = useState(false);
     console.warn('is visible ', isVisible);
-
+    // this is the handler for the double press
     const handleDoubleLike = () => {
         if (liked) return;
         setLiked(prev => !prev);
         setLikes(prev => prev + 1);
     }
+    // this is the handler for the single press
     const handleLike = () => {
         setLiked(prev => !prev);
         setLikes(prev => prev + (liked ? -1 : 1));
     }
-
+    // Here we are checking if the post has an image, images or video
+    // and we are rendering the correct component
+    // if the post has an image we are rendering a single image
+    // if the post has images we are rendering a carousel
+    // if the post has a video we are rendering a video player
     let content;
     if (post.image) {
         content = (
@@ -52,7 +58,8 @@ const Post = ({ post, isVisible }: IPostProps) => {
     } else if (post.video) {
         content = <VideoPlayer uri={post.video} paused={!isVisible} />
     }
-
+    // Here we are rendering the post
+    // we are using the same styles for the post
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -74,6 +81,7 @@ const Post = ({ post, isVisible }: IPostProps) => {
             </View>
             {content}
             <View style={styles.footer}>
+                {/** Icons */}
                 <View style={styles.iconContainer}>
                     <AntDesign
                         name={liked ? 'heart' : 'hearto'}
@@ -101,6 +109,7 @@ const Post = ({ post, isVisible }: IPostProps) => {
                         onPress={() => { setBookmarked(prev => !prev) }}
                     />
                 </View>
+                {/** Likes */}
                 <Text>
                     Liked by <Text style={styles.bold}> someone </Text> and{' '}
                     <Text style={styles.bold}> {likes} others</Text>
@@ -111,6 +120,7 @@ const Post = ({ post, isVisible }: IPostProps) => {
                     {' '}
                     {post?.description}{' '}
                 </Text>
+                {/** More */}
                 <Text
                     onPress={() => setIsLargeDescription(prev => !prev)}>
                     {isLargeDescription ? 'less' : 'more'}
