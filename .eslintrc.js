@@ -19,6 +19,7 @@ module.exports = {
     'react-native/sort-styles': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
+    'react-native/no-color-literals': 'on',
   },
   settings: {
     'import/resolver': {

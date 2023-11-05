@@ -1,1 +1,1 @@
-export { default } from './DoublePressable';
+export {default} from './DoublePressable';
