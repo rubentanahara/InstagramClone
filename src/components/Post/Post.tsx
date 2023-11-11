@@ -1,10 +1,11 @@
 import BottomSheet, {
   BottomSheetFlatList,
+  BottomSheetFooter,
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import {Portal} from '@gorhom/portal';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
@@ -12,10 +13,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../../assets/theme/colors';
 import {IPost} from '../../types/interfaces';
 import Carousel from '../Carousel';
+import {FullComment} from '../Comments';
 import SimpleComment from '../Comments/SimpleComment';
 import DoublePressable from '../DoublePressable';
 import VideoPlayer from '../VideoPlayer';
 import styles from './styles';
+import com from '../../assets/data/comments.json';
+import {TextInput} from 'react-native-gesture-handler';
 
 interface IPostProps {
   post: IPost;
@@ -32,7 +36,7 @@ const Post = ({post, isVisible}: IPostProps) => {
   const [isShowBottomSheet, setIsShowBottomSheet] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
   // variables
-  const snapPoints = useMemo(() => ['40%'], []);
+  const snapPoints = useMemo(() => ['80%', '100%'], []);
 
   // this is the handler for the double press
   const handleDoubleLike = () => {
@@ -45,6 +49,28 @@ const Post = ({post, isVisible}: IPostProps) => {
     setLiked(prev => !prev);
     setLikes(prev => prev + (liked ? -1 : 1));
   };
+  // renders
+  const renderFooter = useCallback(
+    props => (
+      <BottomSheetFooter {...props} bottomInset={24}>
+        <View>
+          <Text>Footer</Text>
+        </View>
+      </BottomSheetFooter>
+    ),
+    [],
+  );
+
+  const emojis = [
+    '❤️', // Red Heart
+    '🙌', // Raising Hands
+    '🔥', // Fire
+    '👏', // Clapping Hands
+    '😢',
+    '😍', // Smiling Face with Heart-Eyes
+    '😮',
+    '😂', // Face with Tears of Joy
+  ];
 
   // Here we are checking if the post has an image, images or video
   // and we are rendering the correct component
@@ -82,20 +108,104 @@ const Post = ({post, isVisible}: IPostProps) => {
       {isShowBottomSheet && (
         <Portal>
           <BottomSheet
-            keyboardBehavior="fillParent"
             style={styles.shadow}
             ref={bottomSheetRef}
             snapPoints={snapPoints}
             enablePanDownToClose
+            footerComponent={renderFooter}
             onClose={() => setIsShowBottomSheet(v => !v)}>
             <View
               style={{
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
                 height: '100%',
+                paddingTop: 5,
               }}>
-              <Text>Awesome 🔥</Text>
+              <Text
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  textAlign: 'center',
+                  marginBottom: 10,
+                  fontWeight: 'bold',
+                  fontSize: 15,
+                }}>
+                Comments
+              </Text>
+              <View
+                style={{
+                  height: 0.5,
+                  backgroundColor: colors.grey,
+                }}></View>
+              <BottomSheetFlatList
+                style={{
+                  paddingTop: 5,
+                  paddingRight: 15,
+                  paddingLeft: 15,
+                }}
+                data={com}
+                renderItem={({item}) => <FullComment comment={item} />}
+              />
+              <View
+                style={{
+                  height: 0.5,
+                  backgroundColor: colors.grey,
+                }}></View>
+
+              <View
+                style={{
+                  width: '100%',
+                  height: 110,
+                  padding: 10,
+                }}>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    padding: 5,
+                    marginBottom: 10,
+                  }}>
+                  {emojis.map((e, index) => (
+                    <Text key={index} style={{fontSize: 22}}>
+                      {e}
+                    </Text>
+                  ))}
+                </View>
+                <View
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: 'grey',
+                      borderRadius: 50,
+                      height: 45,
+                      aspectRatio: 1,
+                    }}></View>
+                  <TextInput
+                    placeholder="Add a comment for user..."
+                    style={{
+                      borderWidth: 1,
+                      borderColor: colors.grey,
+                      borderRadius: 20,
+                      padding: 10,
+                      width: '71%',
+                    }}
+                  />
+                  <View
+                    style={{
+                      backgroundColor: 'grey',
+                      borderRadius: 50,
+                      height: 45,
+                      aspectRatio: 1,
+                    }}></View>
+                </View>
+              </View>
             </View>
           </BottomSheet>
         </Portal>

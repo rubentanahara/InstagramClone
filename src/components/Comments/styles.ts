@@ -40,7 +40,7 @@ export default StyleSheet.create({
   fullCommentText: {
     color: colors.black,
     lineHeight: 18,
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
   middleColumn: {
     flex: 1,
@@ -50,6 +50,6 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   footerText: {
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
 });

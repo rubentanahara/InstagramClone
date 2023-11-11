@@ -2,14 +2,13 @@ import React, {useState} from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../assets/theme/colors';
-import {IComment} from '../../types/interfaces';
 import styles from './styles';
 
-interface ICommentProps {
-  comment: IComment;
-}
+// interface ICommentProps {
+//   comment: IComment;
+// }
 
-const FullComment = ({comment}: ICommentProps) => {
+const FullComment = ({comment}) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {
@@ -35,6 +34,7 @@ const FullComment = ({comment}: ICommentProps) => {
           name={liked ? 'heart' : 'hearto'}
           style={styles.icon}
           color={liked ? colors.accent : colors.black}
+          size={16}
         />
       </Pressable>
     </View>
