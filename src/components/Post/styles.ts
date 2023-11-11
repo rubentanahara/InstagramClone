@@ -65,4 +65,25 @@ export default StyleSheet.create({
     flex: 1,
     lineHeight: 16,
   },
+  input: {
+    alignSelf: 'stretch',
+    marginHorizontal: 12,
+    marginBottom: 12,
+    padding: 12,
+    borderRadius: 12,
+    backgroundColor: 'grey',
+    color: 'white',
+    textAlign: 'center',
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
+
+    elevation: 24,
+  },
 });

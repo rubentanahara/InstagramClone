@@ -1,4 +1,7 @@
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, {
+  BottomSheetFlatList,
+  BottomSheetTextInput,
+} from '@gorhom/bottom-sheet';
 import {Portal} from '@gorhom/portal';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {Image, Text, View} from 'react-native';
@@ -29,7 +32,7 @@ const Post = ({post, isVisible}: IPostProps) => {
   const [isShowBottomSheet, setIsShowBottomSheet] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
   // variables
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['40%'], []);
 
   // this is the handler for the double press
   const handleDoubleLike = () => {
@@ -42,9 +45,7 @@ const Post = ({post, isVisible}: IPostProps) => {
     setLiked(prev => !prev);
     setLikes(prev => prev + (liked ? -1 : 1));
   };
-  const handleClosePress = useCallback(() => {
-    bottomSheetRef.current?.close();
-  }, []);
+
   // Here we are checking if the post has an image, images or video
   // and we are rendering the correct component
   // if the post has an image we are rendering a single image
@@ -81,6 +82,8 @@ const Post = ({post, isVisible}: IPostProps) => {
       {isShowBottomSheet && (
         <Portal>
           <BottomSheet
+            keyboardBehavior="fillParent"
+            style={styles.shadow}
             ref={bottomSheetRef}
             snapPoints={snapPoints}
             enablePanDownToClose
@@ -91,7 +94,6 @@ const Post = ({post, isVisible}: IPostProps) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100%',
-                padding: 'auto',
               }}>
               <Text>Awesome 🔥</Text>
             </View>
