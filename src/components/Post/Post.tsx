@@ -1,15 +1,16 @@
 import BottomSheet, {
   BottomSheetFlatList,
   BottomSheetFooter,
-  BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import {Portal} from '@gorhom/portal';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
+import {TextInput} from 'react-native-gesture-handler';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import com from '../../assets/data/comments.json';
 import colors from '../../assets/theme/colors';
 import {IPost} from '../../types/interfaces';
 import Carousel from '../Carousel';
@@ -18,8 +19,6 @@ import SimpleComment from '../Comments/SimpleComment';
 import DoublePressable from '../DoublePressable';
 import VideoPlayer from '../VideoPlayer';
 import styles from './styles';
-import com from '../../assets/data/comments.json';
-import {TextInput} from 'react-native-gesture-handler';
 
 interface IPostProps {
   post: IPost;
