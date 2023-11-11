@@ -1,9 +1,7 @@
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import BottomSheet from '@gorhom/bottom-sheet';
 import {Portal} from '@gorhom/portal';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import Animated, {SlideInDown} from 'react-native-reanimated';
-import {FullWindowOverlay} from 'react-native-screens';
+import {Image, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
@@ -87,7 +85,16 @@ const Post = ({post, isVisible}: IPostProps) => {
             snapPoints={snapPoints}
             enablePanDownToClose
             onClose={() => setIsShowBottomSheet(v => !v)}>
-            <Text>Awesome 🔥</Text>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+                padding: 'auto',
+              }}>
+              <Text>Awesome 🔥</Text>
+            </View>
           </BottomSheet>
         </Portal>
       )}

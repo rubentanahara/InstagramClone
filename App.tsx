@@ -16,6 +16,7 @@ const App = () => {
 const styles = StyleSheet.create({
   app: {
     marginTop: '15%',
+    marginBottom: '5%',
     flex: 1,
   },
 });
