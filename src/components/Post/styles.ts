@@ -76,7 +76,7 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   shadow: {
-    shadowColor: '#000',
+    shadowColor: 'black',
     shadowOffset: {
       width: 0,
       height: 12,

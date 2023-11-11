@@ -37,13 +37,16 @@ export default StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 25,
   },
+  user: {
+    fontWeight: fonts.weight.bold,
+  },
   fullCommentText: {
     color: colors.black,
     lineHeight: 18,
-    marginHorizontal: 10,
   },
   middleColumn: {
     flex: 1,
+    marginHorizontal: 10,
   },
   footer: {
     flexDirection: 'row',

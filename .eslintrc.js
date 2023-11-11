@@ -16,7 +16,7 @@ module.exports = {
     ],
     'react-native/no-inline-styles': `off`,
     'react/react-in-jsx-scope': 'off',
-    'react-native/sort-styles': 'off',
+    'react-native/sort-styles': 'on',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'react-native/no-color-literals': 'on',

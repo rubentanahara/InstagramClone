@@ -19,10 +19,9 @@ const FullComment = ({comment}) => {
     <View style={styles.fullComment}>
       <Image source={{uri: comment.user.image}} style={styles.avatar} />
       <View style={styles.middleColumn}>
-        <Text style={styles.fullCommentText}>
-          <Text style={styles.bold}>{comment.user.username} </Text>
-          {comment.comment}
-        </Text>
+        <Text style={styles.user}>{comment.user.username} </Text>
+
+        <Text style={styles.fullCommentText}>{comment.comment}</Text>
         <View style={styles.footer}>
           <Text style={styles.footerText}>2d</Text>
           <Text style={styles.footerText}>5 Likes </Text>
