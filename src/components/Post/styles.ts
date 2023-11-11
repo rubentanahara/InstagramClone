@@ -6,6 +6,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  greyBackground: {
+    backgroundColor: 'grey',
+  },
   header: {
     alignItems: 'center',
     flexDirection: 'row',

@@ -9,7 +9,7 @@ interface ICommentProps {
   comment: IComment;
 }
 
-const Comment = ({comment}: ICommentProps) => {
+const SimpleComment = ({comment}: ICommentProps) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {
@@ -31,4 +31,4 @@ const Comment = ({comment}: ICommentProps) => {
   );
 };
 
-export default Comment;
+export default SimpleComment;

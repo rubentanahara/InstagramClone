@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
-import {View, Text, Image} from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import {Portal} from '@gorhom/portal';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import Animated, {SlideInDown} from 'react-native-reanimated';
+import {FullWindowOverlay} from 'react-native-screens';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
-import styles from './styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../../assets/theme/colors';
-import Comment from '../Comment';
 import {IPost} from '../../types/interfaces';
-import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
+import SimpleComment from '../Comments/SimpleComment';
+import DoublePressable from '../DoublePressable';
 import VideoPlayer from '../VideoPlayer';
+import styles from './styles';
 
 interface IPostProps {
   post: IPost;
@@ -24,6 +28,11 @@ const Post = ({post, isVisible}: IPostProps) => {
   const [likes, setLikes] = useState(post.nofLikes);
   const [comments] = useState(post.nofComments);
   const [isLargeDescription, setIsLargeDescription] = useState(false);
+  const [isShowBottomSheet, setIsShowBottomSheet] = useState(false);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  // variables
+  const snapPoints = useMemo(() => ['50%'], []);
+
   // this is the handler for the double press
   const handleDoubleLike = () => {
     if (liked) return;
@@ -35,6 +44,9 @@ const Post = ({post, isVisible}: IPostProps) => {
     setLiked(prev => !prev);
     setLikes(prev => prev + (liked ? -1 : 1));
   };
+  const handleClosePress = useCallback(() => {
+    bottomSheetRef.current?.close();
+  }, []);
   // Here we are checking if the post has an image, images or video
   // and we are rendering the correct component
   // if the post has an image we are rendering a single image
@@ -68,6 +80,17 @@ const Post = ({post, isVisible}: IPostProps) => {
   // we are using the same styles for the post
   return (
     <View style={styles.container}>
+      {isShowBottomSheet && (
+        <Portal>
+          <BottomSheet
+            ref={bottomSheetRef}
+            snapPoints={snapPoints}
+            enablePanDownToClose
+            onClose={() => setIsShowBottomSheet(v => !v)}>
+            <Text>Awesome 🔥</Text>
+          </BottomSheet>
+        </Portal>
+      )}
       <View style={styles.header}>
         <Image
           style={styles.userAvatar}
@@ -133,11 +156,13 @@ const Post = ({post, isVisible}: IPostProps) => {
           {isLargeDescription ? 'less' : 'more'}
         </Text>
         {/** Comments */}
-        <Text style={styles.viewComments}>
+        <Text
+          style={styles.viewComments}
+          onPress={() => setIsShowBottomSheet(v => !v)}>
           {`View all ${comments} comments`}
         </Text>
         {post.comments.map(comment => {
-          return <Comment key={comment.id} comment={comment} />;
+          return <SimpleComment key={comment.id} comment={comment} />;
         })}
         {/** Post date */}
         <Text style={styles.viewComments}>{post.createdAt}</Text>
