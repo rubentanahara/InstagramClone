@@ -1,66 +1,15 @@
 import React from 'react';
-import {Control, Controller, useForm} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {Image, Text, View} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
 import user from '../../assets/data/user.json';
-import colors from '../../assets/theme/colors';
-import {IUser} from '../../types/interfaces';
+import {IEditableUser} from '../../types/interfaces';
+import CustomInput from './CustomInput';
 import styles from './styles';
 
 const URL_REGEX =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
-type IEditableUserField = 'name' | 'username' | 'website' | 'bio';
-type IEditableUser = Pick<IUser, IEditableUserField>;
-
-interface ICustomInput {
-  label: string;
-  multiline?: boolean;
-  name: IEditableUserField;
-  control: Control<IEditableUser, object>;
-  rules?: object;
-}
-
-const CustomInput = ({
-  label,
-  multiline = false,
-  name,
-  control,
-  rules = {},
-}: ICustomInput) => (
-  <Controller
-    control={control}
-    name={name}
-    rules={rules}
-    render={({field: {onChange, value, onBlur}, fieldState: {error}}) => {
-      return (
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>{label}</Text>
-          <View style={{flex: 1}}>
-            <TextInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              placeholder={label}
-              style={[
-                styles.input,
-                {borderColor: error ? colors.error : colors.black},
-              ]}
-              multiline={multiline}
-            />
-            {error && (
-              <Text style={{color: colors.error}}>
-                {error.message || 'Error'}
-              </Text>
-            )}
-          </View>
-        </View>
-      );
-    }}
-  />
-);
-
-const EditProfileScreen = () => {
+const EditProfileScreen: React.FC = () => {
   const {
     control,
     handleSubmit,

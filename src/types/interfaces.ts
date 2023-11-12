@@ -27,3 +27,6 @@ export interface IComment {
   comment: string;
   user: IUser;
 }
+
+export type IEditableUserField = 'name' | 'username' | 'website' | 'bio';
+export type IEditableUser = Pick<IUser, IEditableUserField>;
