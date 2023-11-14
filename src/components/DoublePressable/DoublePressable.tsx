@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
-import {Pressable} from 'react-native';
+import React, { useState } from 'react';
+import { Pressable } from 'react-native';
 
 interface IDoublePressableProps {
   onDoublePress?: () => void;
   children: React.ReactNode;
 }
 
-const DoublePressable = ({onDoublePress, children}: IDoublePressableProps) => {
+const DoublePressable = ({
+  onDoublePress,
+  children,
+}: IDoublePressableProps) => {
   const [lastPressTime, setLastPressTime] = useState(0);
   // this is the handler for the double press
 

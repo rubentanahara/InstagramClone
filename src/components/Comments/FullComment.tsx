@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import {Image, Pressable, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../assets/theme/colors';
+import { IComment } from '../../types/interfaces';
 import styles from './styles';
 
-// interface ICommentProps {
-//   comment: IComment;
-// }
+interface ICommentProps {
+  comment: IComment;
+}
 
-const FullComment = ({comment}) => {
+const FullComment = ({ comment }: ICommentProps) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {
@@ -17,7 +18,7 @@ const FullComment = ({comment}) => {
 
   return (
     <View style={styles.fullComment}>
-      <Image source={{uri: comment.user.image}} style={styles.avatar} />
+      <Image source={{ uri: comment.user.image }} style={styles.avatar} />
       <View style={styles.middleColumn}>
         <Text style={styles.user}>{comment.user.username} </Text>
 

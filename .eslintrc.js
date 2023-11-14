@@ -12,14 +12,14 @@ module.exports = {
     // Add any project-specific rules or overrides here
     'react/jsx-filename-extension': [
       1,
-      {extensions: ['.js', '.jsx', '.ts', '.tsx']},
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    'react-native/no-inline-styles': `off`,
-    'react/react-in-jsx-scope': 'off',
-    'react-native/sort-styles': 'on',
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    // 'react-native/no-inline-styles': `on`,
+    // 'react/react-in-jsx-scope': 'on',
+    // 'react-native/sort-styles': 'on',
+    '@typescript-eslint/explicit-function-return-type': 'on',
     '@typescript-eslint/no-unused-vars': 'error',
-    'react-native/no-color-literals': 'on',
+    'react-native/no-color-literals': 'off',
   },
   settings: {
     'import/resolver': {

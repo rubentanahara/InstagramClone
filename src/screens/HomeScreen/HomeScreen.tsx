@@ -1,7 +1,7 @@
 import React from 'react';
-import {FlatList, ListRenderItemInfo} from 'react-native';
-import Post from '../../components/Post/Post';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 import posts from '../../assets/data/post.json';
+import Post from '../../components/Post/Post';
 import useViewablePost from './hooks/useViewablePost'; // Custom hook for viewability logic
 
 interface PostItem {
@@ -9,9 +9,9 @@ interface PostItem {
 }
 
 const HomeScreen = () => {
-  const {activePostId, onViewableItemsChanged} = useViewablePost();
+  const { activePostId, onViewableItemsChanged } = useViewablePost();
 
-  const renderPost = ({item}: ListRenderItemInfo<PostItem>) => (
+  const renderPost = ({ item }: ListRenderItemInfo<PostItem>) => (
     <Post post={item} isVisible={activePostId === item.id} />
   );
 
@@ -21,7 +21,7 @@ const HomeScreen = () => {
       renderItem={renderPost}
       keyExtractor={item => item.id}
       showsVerticalScrollIndicator={false}
-      viewabilityConfig={{itemVisiblePercentThreshold: 70}}
+      viewabilityConfig={{ itemVisiblePercentThreshold: 70 }}
       onViewableItemsChanged={onViewableItemsChanged}
     />
   );

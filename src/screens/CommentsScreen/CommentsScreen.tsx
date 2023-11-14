@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import { FlatList, View } from 'react-native';
 import comments from '../../assets/data/comments.json';
 import SimpleComment from '../../components/Comments/SimpleComment';
 
@@ -8,8 +8,10 @@ const CommentsScreen = () => {
     <View>
       <FlatList
         data={comments}
-        renderItem={({item}) => <SimpleComment comment={item} />}
-        style={{padding: 10}}
+        renderItem={({ item }) => {
+          return <SimpleComment comment={item} />;
+        }}
+        style={{ padding: 10 }}
       />
     </View>
   );

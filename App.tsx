@@ -1,7 +1,6 @@
+import { PortalProvider } from '@gorhom/portal';
 import React from 'react';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {PortalProvider} from '@gorhom/portal';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import EditProfile from './src/screens/EditProfile';
 import styles from './styles';
 

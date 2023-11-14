@@ -1,15 +1,15 @@
-import {useState} from 'react';
-import {Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import styles from './styles';
 import colors from '../../assets/theme/colors';
-import {IComment} from '../../types/interfaces';
+import { IComment } from '../../types/interfaces';
+import styles from './styles';
 
 interface ICommentProps {
   comment: IComment;
 }
 
-const SimpleComment = ({comment}: ICommentProps) => {
+const SimpleComment = ({ comment }: ICommentProps) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {

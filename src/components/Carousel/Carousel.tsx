@@ -1,10 +1,10 @@
-import {useState, useRef} from 'react';
+import { useRef, useState } from 'react';
 import {
-  View,
-  Image,
   FlatList,
+  Image,
   StyleSheet,
   useWindowDimensions,
+  View,
   ViewabilityConfig,
   ViewToken,
 } from 'react-native';
@@ -16,17 +16,17 @@ interface ICarousel {
   onDoublePress: () => void;
 }
 
-const Carousel = ({images, onDoublePress}: ICarousel) => {
+const Carousel = ({ images, onDoublePress }: ICarousel) => {
   const [activeImageIndex, setActiveImageIndex] = useState(1);
 
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 51,
   };
 
   const onViewableItemsChanged = useRef(
-    ({viewableItems}: {viewableItems: Array<ViewToken>}) => {
+    ({ viewableItems }: { viewableItems: Array<ViewToken> }) => {
       if (viewableItems.length > 0) {
         setActiveImageIndex(viewableItems[0].index || 0);
       }
@@ -38,9 +38,9 @@ const Carousel = ({images, onDoublePress}: ICarousel) => {
       <FlatList
         data={images}
         style={styles.container}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <DoublePressable onDoublePress={onDoublePress}>
-            <Image source={{uri: item}} style={[styles.image, {width}]} />
+            <Image source={{ uri: item }} style={[styles.image, { width }]} />
           </DoublePressable>
         )}
         horizontal

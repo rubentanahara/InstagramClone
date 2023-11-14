@@ -1,8 +1,8 @@
 import React from 'react';
-import {useForm} from 'react-hook-form';
-import {Image, Text, View} from 'react-native';
+import { useForm } from 'react-hook-form';
+import { Image, Text, View } from 'react-native';
 import user from '../../assets/data/user.json';
-import {IEditableUser} from '../../types/interfaces';
+import { IEditableUser } from '../../types/interfaces';
 import CustomInput from './CustomInput';
 import styles from './styles';
 
@@ -13,7 +13,7 @@ const EditProfileScreen: React.FC = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm<IEditableUser>({
     defaultValues: {
       name: user.name,
@@ -29,13 +29,13 @@ const EditProfileScreen: React.FC = () => {
 
   return (
     <View style={styles.page}>
-      <Image source={{uri: user.image}} style={styles.avatar} />
+      <Image source={{ uri: user.image }} style={styles.avatar} />
       <Text style={styles.textButton}>Change profile photo</Text>
       <CustomInput
         label={'Name'}
         control={control}
         name={'name'}
-        rules={{required: 'Name is required'}}
+        rules={{ required: 'Name is required' }}
       />
       <CustomInput
         label={'Username'}
@@ -43,7 +43,7 @@ const EditProfileScreen: React.FC = () => {
         name={'username'}
         rules={{
           required: 'Username is required',
-          minLegth: {value: 3, message: 'min 3 characteres'},
+          minLegth: { value: 3, message: 'min 3 characteres' },
         }}
       />
       <CustomInput
@@ -60,7 +60,7 @@ const EditProfileScreen: React.FC = () => {
         multiline={true}
         control={control}
         name={'bio'}
-        rules={{required: 'Bio is required'}}
+        rules={{ required: 'Bio is required' }}
       />
       <Text onPress={handleSubmit(onSubmit)} style={styles.textButton}>
         Submit

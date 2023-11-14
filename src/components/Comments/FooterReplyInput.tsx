@@ -1,6 +1,6 @@
-import {BottomSheetTextInput} from '@gorhom/bottom-sheet';
-import React, {useState} from 'react';
-import {Pressable, Text, View} from 'react-native';
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import React, { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
 import colors from '../../assets/theme/colors';
 
 const FooterReplyInput = () => {
@@ -73,7 +73,7 @@ const styles = {
     height: 0.5,
     backgroundColor: colors.grey,
   },
-  wrapper: {width: '100%', height: 110, padding: 10},
+  wrapper: { width: '100%', height: 110, padding: 10 },
   emojisWrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -82,6 +82,6 @@ const styles = {
     padding: 5,
     marginBottom: 10,
   },
-  emoji: {fontSize: 20},
+  emoji: { fontSize: 20 },
 };
 export default FooterReplyInput;

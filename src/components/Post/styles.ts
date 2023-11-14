@@ -1,10 +1,29 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '../../assets/theme/colors';
 import fonts from '../../assets/fonts/fonts';
 
 export default StyleSheet.create({
+  bold: {
+    fontWeight: fonts.weight.bold,
+  },
+  caption: {
+    lineHeight: 18,
+    marginVertical: 5,
+  },
+  comment: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+  commentText: {
+    flex: 1,
+    lineHeight: 16,
+  },
   container: {
     flex: 1,
+  },
+  footer: {
+    padding: 10,
   },
   greyBackground: {
     backgroundColor: 'grey',
@@ -14,9 +33,41 @@ export default StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
   },
+  icon: {
+    marginHorizontal: 5,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
   image: {
     aspectRatio: 1,
     width: '100%',
+  },
+  input: {
+    alignSelf: 'stretch',
+    backgroundColor: 'grey',
+    borderRadius: 12,
+    color: 'white',
+    marginBottom: 12,
+    marginHorizontal: 12,
+    padding: 12,
+    textAlign: 'center',
+  },
+  location: {
+    color: colors.grey,
+    fontSize: fonts.size.s,
+  },
+  shadow: {
+    elevation: 24,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+
+    shadowRadius: 16.0,
   },
   threeDots: {
     marginLeft: 'auto',
@@ -31,59 +82,8 @@ export default StyleSheet.create({
     color: colors.black,
     fontWeight: fonts.weight.bold,
   },
-  footer: {
-    padding: 10,
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    marginBottom: 5,
-  },
-  icon: {
-    marginHorizontal: 5,
-  },
-  caption: {
-    marginVertical: 5,
-    lineHeight: 18,
-  },
-  bold: {
-    fontWeight: fonts.weight.bold,
-  },
-  comment: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5,
-  },
   viewComments: {
     color: colors.grey,
     marginVertical: 5,
-  },
-  location: {
-    color: colors.grey,
-    fontSize: fonts.size.s,
-  },
-  commentText: {
-    flex: 1,
-    lineHeight: 16,
-  },
-  input: {
-    alignSelf: 'stretch',
-    marginHorizontal: 12,
-    marginBottom: 12,
-    padding: 12,
-    borderRadius: 12,
-    backgroundColor: 'grey',
-    color: 'white',
-    textAlign: 'center',
-  },
-  shadow: {
-    shadowColor: 'black',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-
-    elevation: 24,
   },
 });

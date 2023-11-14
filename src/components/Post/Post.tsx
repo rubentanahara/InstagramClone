@@ -2,18 +2,18 @@ import BottomSheet, {
   BottomSheetFlatList,
   BottomSheetFooter,
 } from '@gorhom/bottom-sheet';
-import {Portal} from '@gorhom/portal';
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import { Portal } from '@gorhom/portal';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Image, Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import com from '../../assets/data/comments.json';
 import colors from '../../assets/theme/colors';
-import {IPost} from '../../types/interfaces';
+import { IPost } from '../../types/interfaces';
 import Carousel from '../Carousel';
-import {FooterReplyInput, FullComment, SimpleComment} from '../Comments';
+import { FooterReplyInput, FullComment, SimpleComment } from '../Comments';
 import DoublePressable from '../DoublePressable';
 import VideoPlayer from '../VideoPlayer';
 import styles from './styles';
@@ -23,7 +23,7 @@ interface IPostProps {
   isVisible: boolean;
 }
 
-const Post = ({post, isVisible}: IPostProps) => {
+const Post = ({ post, isVisible }: IPostProps) => {
   // this is are the states for the post
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
@@ -47,13 +47,14 @@ const Post = ({post, isVisible}: IPostProps) => {
     setLikes(prev => prev + (liked ? -1 : 1));
   };
   // renders
-  const renderFooter = useCallback(props => {
-    return (
+  const renderFooter = useCallback(
+    props => (
       <BottomSheetFooter {...props}>
         <FooterReplyInput />
       </BottomSheetFooter>
-    );
-  }, []);
+    ),
+    [],
+  );
 
   let content;
   if (post.image) {
@@ -117,7 +118,7 @@ const Post = ({post, isVisible}: IPostProps) => {
                 }}
                 showsVerticalScrollIndicator={false}
                 data={com}
-                renderItem={({item}) => <FullComment comment={item} />}
+                renderItem={({ item }) => <FullComment comment={item} />}
               />
             </View>
           </BottomSheet>
@@ -130,7 +131,7 @@ const Post = ({post, isVisible}: IPostProps) => {
             uri: post.user.image,
           }}
         />
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Text style={styles.userName}>{post.user.username}</Text>
           <Text style={styles.location}>{post?.location}</Text>
         </View>
@@ -167,7 +168,7 @@ const Post = ({post, isVisible}: IPostProps) => {
           <Ionicons
             name={bookmarked ? 'bookmark' : 'bookmark-outline'}
             size={24}
-            style={{marginLeft: 'auto'}}
+            style={{ marginLeft: 'auto' }}
             color={colors.black}
             onPress={() => {
               setBookmarked(prev => !prev);
