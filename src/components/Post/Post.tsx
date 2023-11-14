@@ -23,7 +23,7 @@ interface IPostProps {
   isVisible: boolean;
 }
 
-const Post = ({ post, isVisible }: IPostProps) => {
+const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
   // this is are the states for the post
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);

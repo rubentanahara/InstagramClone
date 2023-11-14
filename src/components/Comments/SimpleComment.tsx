@@ -9,7 +9,7 @@ interface ICommentProps {
   comment: IComment;
 }
 
-const SimpleComment = ({ comment }: ICommentProps) => {
+const SimpleComment: React.FC<ICommentProps> = ({ comment }) => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {

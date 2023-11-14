@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import colors from '../../assets/theme/colors';
 
-const FooterReplyInput = () => {
+const FooterReplyInput: React.FC = () => {
   const [comment, setComment] = useState('');
   const emojis = ['❤️', '🙌', '🔥', '👏', '😢', '😍', '😮', '😂'];
 

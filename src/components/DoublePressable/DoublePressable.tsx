@@ -6,10 +6,10 @@ interface IDoublePressableProps {
   children: React.ReactNode;
 }
 
-const DoublePressable = ({
+const DoublePressable: React.FC<IDoublePressableProps> = ({
   onDoublePress,
   children,
-}: IDoublePressableProps) => {
+}) => {
   const [lastPressTime, setLastPressTime] = useState(0);
   // this is the handler for the double press
 

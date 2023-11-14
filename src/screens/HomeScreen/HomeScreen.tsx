@@ -8,7 +8,7 @@ interface PostItem {
   id: string;
 }
 
-const HomeScreen = () => {
+const HomeScreen: React.FC = () => {
   const { activePostId, onViewableItemsChanged } = useViewablePost();
 
   const renderPost = ({ item }: ListRenderItemInfo<PostItem>) => (

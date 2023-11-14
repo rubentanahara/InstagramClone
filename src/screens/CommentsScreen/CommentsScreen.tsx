@@ -3,7 +3,7 @@ import { FlatList, View } from 'react-native';
 import comments from '../../assets/data/comments.json';
 import SimpleComment from '../../components/Comments/SimpleComment';
 
-const CommentsScreen = () => {
+const CommentsScreen: React.FC = () => {
   return (
     <View>
       <FlatList

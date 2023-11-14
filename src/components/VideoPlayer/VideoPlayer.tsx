@@ -8,7 +8,7 @@ interface IVideoPlayer {
   paused: boolean;
 }
 
-const VideoPlayer = ({ uri, paused }: IVideoPlayer) => {
+const VideoPlayer: React.FC<IVideoPlayer> = ({ uri, paused }) => {
   const [muted, setMuted] = useState(true);
   return (
     <View>

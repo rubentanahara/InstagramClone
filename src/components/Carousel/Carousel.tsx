@@ -16,7 +16,7 @@ interface ICarousel {
   onDoublePress: () => void;
 }
 
-const Carousel = ({ images, onDoublePress }: ICarousel) => {
+const Carousel: React.FC<ICarousel> = ({ images, onDoublePress }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(1);
 
   const { width } = useWindowDimensions();
