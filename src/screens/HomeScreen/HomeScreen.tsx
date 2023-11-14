@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
 import posts from '../../assets/data/post.json';
@@ -11,7 +12,9 @@ interface PostItem {
 const HomeScreen: React.FC = () => {
   const { activePostId, onViewableItemsChanged } = useViewablePost();
 
-  const renderPost = ({ item }: ListRenderItemInfo<PostItem>) => (
+  const renderPost = ({
+    item,
+  }: ListRenderItemInfo<PostItem>): React.JSX.Element => (
     <Post post={item} isVisible={activePostId === item.id} />
   );
 
@@ -19,7 +22,7 @@ const HomeScreen: React.FC = () => {
     <FlatList
       data={posts}
       renderItem={renderPost}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
       viewabilityConfig={{ itemVisiblePercentThreshold: 70 }}
       onViewableItemsChanged={onViewableItemsChanged}

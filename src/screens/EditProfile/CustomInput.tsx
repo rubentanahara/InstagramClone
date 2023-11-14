@@ -10,7 +10,7 @@ interface ICustomInputProps {
   multiline?: boolean;
   name: IEditableUserField;
   control: Control<IEditableUser>;
-  rules?: { [key: string]: any };
+  rules?: { [key: string]: unknown };
 }
 
 const CustomInput: React.FC<ICustomInputProps> = ({
@@ -24,7 +24,10 @@ const CustomInput: React.FC<ICustomInputProps> = ({
     control={control}
     name={name}
     rules={rules}
-    render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => {
+    render={({
+      field: { onChange, value, onBlur },
+      fieldState: { error },
+    }): React.JSX.Element => {
       return (
         <View style={styles.inputContainer}>
           <Text style={styles.label}>{label}</Text>

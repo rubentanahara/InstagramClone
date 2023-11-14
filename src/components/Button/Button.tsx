@@ -7,7 +7,7 @@ interface IButton {
   onPress?: () => void;
 }
 
-const Button: React.FC<IButton> = ({ text = '', onPress = () => {} }) => {
+const Button: React.FC<IButton> = ({ text = '', onPress }) => {
   return (
     <Pressable style={styles.container} onPress={onPress}>
       <Text style={styles.text}>{text}</Text>

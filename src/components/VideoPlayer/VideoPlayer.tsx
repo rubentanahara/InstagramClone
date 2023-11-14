@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState } from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 import Video from 'react-native-video';
@@ -15,18 +16,19 @@ const VideoPlayer: React.FC<IVideoPlayer> = ({ uri, paused }) => {
       <Video
         source={{ uri }}
         style={styles.video}
-        resizeMode="cover"
+        resizeMode='cover'
         repeat
         muted={muted}
         paused={paused}
       />
       <Pressable
-        onPress={() => setMuted(prev => !prev)}
-        style={styles.muteButton}>
+        onPress={() => setMuted((prev) => !prev)}
+        style={styles.muteButton}
+      >
         <Ionicons
           name={muted ? 'volume-mute' : 'volume-high'}
           size={14}
-          color="white"
+          color='white'
         />
       </Pressable>
     </View>

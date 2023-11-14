@@ -29,12 +29,12 @@ const ProfileHeader: React.FC = () => {
       <Text>{user.bio}</Text>
       <View style={{ flexDirection: 'row' }}>
         <Button
-          text="Edit Profile"
-          onPress={() => console.warn('edit profile')}
+          text='Edit Profile'
+          onPress={(): void => console.warn('edit profile')}
         />
         <Button
-          text="Edit Profile"
-          onPress={() => console.warn('edit profile')}
+          text='Edit Profile'
+          onPress={(): void => console.warn('edit profile')}
         />
       </View>
     </View>

@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import BottomSheet, {
   BottomSheetFlatList,
   BottomSheetFooter,
 } from '@gorhom/bottom-sheet';
+import { BottomSheetDefaultFooterProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetFooter/types';
 import { Portal } from '@gorhom/portal';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Image, Text, View } from 'react-native';
@@ -25,35 +27,35 @@ interface IPostProps {
 
 const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
   // this is are the states for the post
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
+  const [liked, setLiked] = useState<boolean>(false);
+  const [bookmarked, setBookmarked] = useState<boolean>(false);
   const [likes, setLikes] = useState(post.nofLikes);
   const [comments] = useState(post.nofComments);
-  const [isLargeDescription, setIsLargeDescription] = useState(false);
-  const [isShowBottomSheet, setIsShowBottomSheet] = useState(false);
+  const [isLargeDescription, setIsLargeDescription] = useState<boolean>(false);
+  const [isShowBottomSheet, setIsShowBottomSheet] = useState<boolean>(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
   // variables
   const snapPoints = useMemo(() => ['80%'], []);
 
   // this is the handler for the double press
-  const handleDoubleLike = () => {
+  const handleDoubleLike = (): void => {
     if (liked) return;
-    setLiked(prev => !prev);
-    setLikes(prev => prev + 1);
+    setLiked((prev) => !prev);
+    setLikes((prev) => prev + 1);
   };
   // this is the handler for the single press
-  const handleLike = () => {
-    setLiked(prev => !prev);
-    setLikes(prev => prev + (liked ? -1 : 1));
+  const handleLike = (): void => {
+    setLiked((prev) => !prev);
+    setLikes((prev) => prev + (liked ? -1 : 1));
   };
   // renders
   const renderFooter = useCallback(
-    props => (
+    (props: React.JSX.IntrinsicAttributes & BottomSheetDefaultFooterProps) => (
       <BottomSheetFooter {...props}>
         <FooterReplyInput />
       </BottomSheetFooter>
     ),
-    [],
+    []
   );
 
   let content;
@@ -91,7 +93,8 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
             snapPoints={snapPoints}
             enablePanDownToClose
             footerComponent={renderFooter}
-            onClose={() => setIsShowBottomSheet(v => !v)}>
+            onClose={() => setIsShowBottomSheet((v) => !v)}
+          >
             <Text
               style={{
                 display: 'flex',
@@ -99,18 +102,21 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
                 fontWeight: 'bold',
                 fontSize: 16,
                 paddingBottom: 10,
-              }}>
+              }}
+            >
               Comments
             </Text>
             <View
               style={{
                 height: 0.5,
                 backgroundColor: colors.grey,
-              }}></View>
+              }}
+            ></View>
             <View
               style={{
                 height: '70%',
-              }}>
+              }}
+            >
               <BottomSheetFlatList
                 style={{
                   paddingTop: 10,
@@ -118,7 +124,9 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
                 }}
                 showsVerticalScrollIndicator={false}
                 data={com}
-                renderItem={({ item }) => <FullComment comment={item} />}
+                renderItem={({ item }): React.JSX.Element => (
+                  <FullComment comment={item} />
+                )}
               />
             </View>
           </BottomSheet>
@@ -136,7 +144,7 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
           <Text style={styles.location}>{post?.location}</Text>
         </View>
         <Entypo
-          name="dots-three-horizontal"
+          name='dots-three-horizontal'
           size={15}
           style={styles.threeDots}
         />
@@ -153,14 +161,14 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
             onPress={handleLike}
           />
           <Ionicons
-            name="chatbubble-outline"
+            name='chatbubble-outline'
             size={24}
             style={styles.icon}
             color={colors.black}
-            onPress={() => setIsShowBottomSheet(v => !v)}
+            onPress={() => setIsShowBottomSheet((v) => !v)}
           />
           <Feather
-            name="send"
+            name='send'
             size={24}
             style={styles.icon}
             color={colors.black}
@@ -171,7 +179,7 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
             style={{ marginLeft: 'auto' }}
             color={colors.black}
             onPress={() => {
-              setBookmarked(prev => !prev);
+              setBookmarked((prev) => !prev);
             }}
           />
         </View>
@@ -186,16 +194,17 @@ const Post: React.FC<IPostProps> = ({ post, isVisible }) => {
           {post?.description}{' '}
         </Text>
         {/** More */}
-        <Text onPress={() => setIsLargeDescription(prev => !prev)}>
+        <Text onPress={() => setIsLargeDescription((prev) => !prev)}>
           {isLargeDescription ? 'less' : 'more'}
         </Text>
         {/** Comments */}
         <Text
           style={styles.viewComments}
-          onPress={() => setIsShowBottomSheet(v => !v)}>
+          onPress={() => setIsShowBottomSheet((v) => !v)}
+        >
           {`View all ${comments} comments`}
         </Text>
-        {post.comments.map(comment => {
+        {post.comments.map((comment) => {
           return <SimpleComment key={comment.id} comment={comment} />;
         })}
         {/** Post date */}

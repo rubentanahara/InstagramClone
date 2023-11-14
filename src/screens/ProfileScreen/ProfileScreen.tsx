@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image } from 'react-native';
 import { ProfileHeader } from '.';

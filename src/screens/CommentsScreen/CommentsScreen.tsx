@@ -8,9 +8,9 @@ const CommentsScreen: React.FC = () => {
     <View>
       <FlatList
         data={comments}
-        renderItem={({ item }) => {
-          return <SimpleComment comment={item} />;
-        }}
+        renderItem={({ item }): React.JSX.Element => (
+          <SimpleComment comment={item} />
+        )}
         style={{ padding: 10 }}
       />
     </View>

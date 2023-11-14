@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -30,7 +30,7 @@ const Carousel: React.FC<ICarousel> = ({ images, onDoublePress }) => {
       if (viewableItems.length > 0) {
         setActiveImageIndex(viewableItems[0].index || 0);
       }
-    },
+    }
   );
 
   return (
@@ -38,7 +38,7 @@ const Carousel: React.FC<ICarousel> = ({ images, onDoublePress }) => {
       <FlatList
         data={images}
         style={styles.container}
-        renderItem={({ item }) => (
+        renderItem={({ item }): React.JSX.Element => (
           <DoublePressable onDoublePress={onDoublePress}>
             <Image source={{ uri: item }} style={[styles.image, { width }]} />
           </DoublePressable>
@@ -69,25 +69,25 @@ const Carousel: React.FC<ICarousel> = ({ images, onDoublePress }) => {
 
 const styles = StyleSheet.create({
   container: {},
-  image: {
-    aspectRatio: 1,
+  dot: {
+    backgroundColor: '#FFF',
+    borderRadius: 5,
+    height: 7,
+    marginHorizontal: 3,
+    margin: 10,
+    width: 7,
   },
   dots: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-
-    position: 'absolute',
     bottom: 0,
+    flexDirection: 'row',
+
+    justifyContent: 'center',
+    position: 'absolute',
 
     width: '100%',
   },
-  dot: {
-    width: 7,
-    height: 7,
-    borderRadius: 5,
-    backgroundColor: '#FFF',
-    marginHorizontal: 3,
-    margin: 10,
+  image: {
+    aspectRatio: 1,
   },
 });
 

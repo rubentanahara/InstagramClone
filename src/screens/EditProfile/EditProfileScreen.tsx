@@ -13,7 +13,7 @@ const EditProfileScreen: React.FC = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {},
   } = useForm<IEditableUser>({
     defaultValues: {
       name: user.name,
@@ -23,7 +23,7 @@ const EditProfileScreen: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: IEditableUser) => {
+  const onSubmit = (data: IEditableUser): void => {
     console.log('submit', data);
   };
 

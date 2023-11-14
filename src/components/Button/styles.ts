@@ -4,15 +4,15 @@ import colors from '../../assets/theme/colors';
 
 export default StyleSheet.create({
   container: {
+    alignItems: 'center',
     //border
-    borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 5,
+    borderWidth: 1,
     //alignment
     flex: 1,
-    alignItems: 'center',
-    padding: 5,
     margin: 5,
+    padding: 5,
   },
   text: {
     color: colors.black,

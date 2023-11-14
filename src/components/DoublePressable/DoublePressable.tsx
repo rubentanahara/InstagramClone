@@ -10,10 +10,10 @@ const DoublePressable: React.FC<IDoublePressableProps> = ({
   onDoublePress,
   children,
 }) => {
-  const [lastPressTime, setLastPressTime] = useState(0);
+  const [lastPressTime, setLastPressTime] = useState<number>(0);
   // this is the handler for the double press
 
-  const handleDoublePress = () => {
+  const handleDoublePress = (): void => {
     const currentTime = new Date().getTime();
     const delta = currentTime - lastPressTime;
     const DOUBLE_PRESS_DELAY = 450;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../assets/theme/colors';
@@ -9,12 +9,16 @@ interface ICommentProps {
   comment: IComment;
 }
 
-const SimpleComment: React.FC<ICommentProps> = ({ comment }) => {
-  const [liked, setLiked] = useState(false);
+const SimpleComment: FunctionComponent<ICommentProps> = ({ comment }) => {
+  const [liked, setLiked] = useState<boolean>(false);
 
-  const handleLike = () => {
-    setLiked(prev => !prev);
+  const handleLike = (): void => {
+    setLiked((prev) => !prev);
   };
+
+  const HEART_ICON = liked ? 'heart' : 'hearto';
+  const ICON_COLOR = liked ? colors.accent : colors.black;
+
   return (
     <View style={styles.comment}>
       <Text style={styles.commentText}>
@@ -23,9 +27,9 @@ const SimpleComment: React.FC<ICommentProps> = ({ comment }) => {
       </Text>
       <AntDesign
         onPress={handleLike}
-        name={liked ? 'heart' : 'hearto'}
+        name={HEART_ICON}
         style={styles.icon}
-        color={liked ? colors.accent : colors.black}
+        color={ICON_COLOR}
       />
     </View>
   );
